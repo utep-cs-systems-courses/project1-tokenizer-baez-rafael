@@ -1,13 +1,16 @@
+#Objects
+OBJS = uimain.o tokenizer.o
+
 # Compiler Flags -g Debug, -03 Optimize
 CFLAGS=-g
 
 all: myProgram
 
-# File Dependencies
-#tester.o: tokenizer.h
+myProgram: $(OBJS)
+	cc -o $@ $(CFLAGS) $(OBJS)
 
-myProgram: uimain.o #tester.o
-	cc -o $@ $^ $(CFLAGS)
+# File Dependencies
+$(OBJS): tokenizer.h
 
 clean:
 	rm -f *.o myProgram
