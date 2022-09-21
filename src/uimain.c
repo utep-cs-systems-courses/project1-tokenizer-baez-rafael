@@ -14,7 +14,7 @@ int main(int argc, char **argv)
     printf("The string is: %s", str);
     char *p = &str[0];
     int numWords = count_words(p);
-    printf("I think there are %d words\n",numWords);
+    char *term_str = copy_str(p, numWords);
   }
   done:
     return 0;

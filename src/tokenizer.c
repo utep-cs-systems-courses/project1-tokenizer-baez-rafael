@@ -19,7 +19,6 @@ char *word_start(char *str){
 char *word_terminator(char *word){
   
   while(non_space_char(*word)){
-    //printf("I'm at char %c\n",*word);
     word++;
   }
   return word;
@@ -29,23 +28,31 @@ int count_words(char *str){
   int numWords = 0;
   while(1){
     str = word_start(str);
-    //printf("current start is %c\n",*str);
-    str = word_terminator(str);
-    //printf("current end is %c\n",*str);
-    ++numWords;
-    
-    if(*str == EOF || *str == '\n'){
-      str++;
-      //printf("next after end is %c\n",*str);
+    //printf("Current char is %c\n",*str);
+    if(space_char(*str))
       goto done;
-    }
+    str = word_terminator(str);
+    ++numWords;
+    if(*str == EOF || *str == '\n')
+      goto done;
   }
   done:
    return numWords;
 }
 
 char *copy_str(char *inStr, short len){
-  //return EOF;
+  printf("There should be %d words\n", len);
+  char *start = inStr;
+  char *end = 0;
+  for(int i = 0; i < len; i++){
+    start = word_start(start);
+    end = word_terminator(start);
+    *end = '0';
+  }
+  //for(int i = 0; i < 64; i++){
+  //  printf("Char at %d = %c\n",i,inStr[i]);
+  //}
+  return inStr;
 }
 
 char **tokenize(char* str){
