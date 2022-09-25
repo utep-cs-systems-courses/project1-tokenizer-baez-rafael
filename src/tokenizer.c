@@ -74,22 +74,24 @@ char **tokenize(char* str){
   int numWords = count_words(str);
   //printf("%d Chars and %d Words\n", numChars, numWords);
   char **tokens = (char**)malloc((numWords+1)*sizeof(char*));
-  char *start = word_start(term_str);
   for(int i = 0; i < numWords; i++){
-    tokens[i] = start;
+    tokens[i] = term_str;
     //printf("Tokens[%d] = %s\n",i,start);
-    start = word_terminator(start)+1;
+    term_str = word_terminator(term_str)+1;
   }
   tokens[numWords] = 0;
   return tokens;
 }
 
 void print_tokens(char **tokens){
-  for(int i = 0; tokens[i] != 0; i++){
+  int i;
+  for(i = 0; tokens[i] != 0; i++){
     printf("Tokens[%d] = %s\n", i, tokens[i]);
   }
+  printf("Tokens[%d] = %s\n", i, tokens[i]);
 }
 
 void free_tokens(char **tokens){
-
+  free(tokens);
+  printf("Memory has been successfully freed\n");
 }

@@ -15,16 +15,8 @@ int main(int argc, char **argv)
     char *p = &str[0];
     char **tokens = tokenize(p);
     print_tokens(tokens);
-    /*
-    int numChars = 0;
-    for(int i = 0; str[i] != 0; i++){
-      if(non_space_char(str[i])){
-	numChars++;
-      }
-    }
-    //printf("I think there are %d nonspace chars\n", numChars);
-    char *term_str = copy_str(p, numChars);
-    */
+    free_tokens(tokens);
+    
   }
   done:
     return 0;
