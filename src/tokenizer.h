@@ -1,6 +1,8 @@
 #ifndef _TOKENIZER_
 #define _TOKENIZER_
 
+int buff_size; // Quick int to change buffer size, mostly for debugging
+
 
 /* Return true (non-zero) if c is a whitespace characer
    ('\t' or ' ').  

@@ -18,7 +18,7 @@ char *word_start(char *str){
 
 char *word_terminator(char *word){
   
-  while(non_space_char(*word)){
+  while(non_space_char(*word) && *word != 0){
     word++;
   }
   return word;
@@ -26,14 +26,13 @@ char *word_terminator(char *word){
 
 int count_words(char *str){
   int numWords = 0;
-  while(1){
+  while(*str != 0){
     str = word_start(str);
-    //printf("Current char is %c\n",*str);
-    if(space_char(*str))
+    if(*str == 0)
       goto done;
     str = word_terminator(str);
     ++numWords;
-    if(*str == EOF || *str == '\n')
+    if(*str == 0)
       goto done;
   }
   done:
@@ -41,16 +40,29 @@ int count_words(char *str){
 }
 
 char *copy_str(char *inStr, short len){
-  printf("There should be %d words\n", len);
-  char *start = inStr;
-  char *end = 0;
-  for(int i = 0; i < len; i++){
-    start = word_start(start);
-    end = word_terminator(start);
-    *end = '0';
+  int numWords = count_words(inStr);
+  char newStr[len+numWords];
+  int newStrCounter = 0;
+  char *endWord = word_terminator(word_start(inStr));
+  for (int i = 0; i < buff_size && inStr[i] != 0; i++){
+    if (!space_char(inStr[i])){
+      newStr[newStrCounter] = inStr[i];
+      newStrCounter++;
+    }
+    else if(&inStr[i] == endWord){
+      newStr[newStrCounter] = 0;
+      newStrCounter++;
+      endWord = word_terminator(word_start(endWord));
+    }
+    else if(inStr[i] == 0){
+      break;
+    }
   }
-  //for(int i = 0; i < 64; i++){
-  //  printf("Char at %d = %c\n",i,inStr[i]);
+  //done:
+  //printf("Setting %d to 0\n",newStrCounter);
+  //newStr[newStrCounter] = 0;
+  // for(int i = 0; i < len+numWords; i++){
+  //  printf("Char at %d = %c\n",i,newStr[i]);
   //}
   return inStr;
 }
