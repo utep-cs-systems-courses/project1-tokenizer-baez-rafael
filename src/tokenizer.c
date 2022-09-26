@@ -71,11 +71,9 @@ char **tokenize(char* str){
   }
   char *term_str = copy_str(str, numChars);
   int numWords = count_words(str);
-  //printf("%d Chars and %d Words\n", numChars, numWords);
   char **tokens = (char**)malloc((numWords+1)*sizeof(char*));
   for(int i = 0; i < numWords; i++){
     tokens[i] = term_str;
-    //printf("Tokens[%d] = %s\n",i,term_str);
     term_str = word_terminator(term_str)+1;
   }
   tokens[numWords] = 0;
