@@ -36,22 +36,27 @@ void add_history(List *list, char*str){
 }
 
 char *get_history(List *list, int id){
+  char err = '\n';
+  char *errP = &err;
   if(list->root){
     Item *curr_node = list->root;
     int old = id;
-    while(id > 0 && curr_node){
+    
+    while(curr_node && id>0){
       curr_node = curr_node->next;
       id--;
     }
-    if(id == 0){
+    if(id == 0 && curr_node != 0){
       return (*curr_node).str;
     }
     else{
-      printf("ID out of range");
+      printf("ID out of range\n");
+      return errP;
     }
   }
   else{
     printf("No history yet!\n");
+    return errP;
   }
 }
 

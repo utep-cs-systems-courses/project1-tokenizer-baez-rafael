@@ -24,7 +24,9 @@ int main()
 	char *cutoff = &str[1];
 	int idx = atoi(cutoff);
 	char *specHist = get_history(userHist, idx);
-	printf("User requested history at [%d]: %s",idx,specHist);
+	if(specHist[0]!= '\n'){
+	  printf("User requested history at [%d]: %s",idx,specHist);
+	}
       }
     }
     else{
