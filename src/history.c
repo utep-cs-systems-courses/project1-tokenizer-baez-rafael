@@ -81,7 +81,7 @@ void free_history(List *list){
     Item *next_node = curr_node;
     while(curr_node != 0){
       next_node = curr_node->next;
-      printf("Freeing %s", curr_node->str);
+      //printf("Freeing %s", curr_node->str);
       free(curr_node->str);
       free(curr_node);
       curr_node = next_node;

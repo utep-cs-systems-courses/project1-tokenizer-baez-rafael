@@ -90,5 +90,5 @@ void print_tokens(char **tokens){
 
 void free_tokens(char **tokens){
   free(tokens);
-  printf("Memory has been successfully freed\n");
+  //printf("Memory has been successfully freed\n");
 }

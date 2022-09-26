@@ -26,6 +26,9 @@ int main()
 	char *specHist = get_history(userHist, idx);
 	if(specHist[0]!= '\n'){
 	  printf("User requested history at [%d]: %s",idx,specHist);
+	  char **tokens = tokenize(specHist);
+	  print_tokens(tokens);
+	  free_tokens(tokens);
 	}
       }
     }
