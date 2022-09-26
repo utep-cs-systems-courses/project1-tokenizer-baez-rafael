@@ -1,5 +1,5 @@
 #Objects
-OBJS = uimain.o tokenizer.o
+OBJS = uimain.o tokenizer.o history.o
 
 # Compiler Flags -g Debug, -03 Optimize
 CFLAGS=-g
@@ -12,7 +12,7 @@ myProgram: $(OBJS)
 	cc -o $@ $(CFLAGS) $(OBJS)
 
 # File Dependencies
-$(OBJS): tokenizer.h
+$(OBJS): tokenizer.h history.h
 
 # Clean directory
 clean:

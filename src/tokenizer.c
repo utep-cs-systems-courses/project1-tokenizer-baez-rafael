@@ -32,7 +32,7 @@ int count_words(char *str){
     if(*str == 0)
       goto done;
     str = word_terminator(str);
-    ++numWords;
+    numWords++;
     if(*str == 0)
       goto done;
   }
@@ -60,8 +60,7 @@ char *copy_str(char *inStr, short len){
       break;
     }
   }
-  char *pNewStr = &newStr[0];
-  return pNewStr;
+  return newStr;
 }
 
 char **tokenize(char* str){
@@ -76,7 +75,7 @@ char **tokenize(char* str){
   char **tokens = (char**)malloc((numWords+1)*sizeof(char*));
   for(int i = 0; i < numWords; i++){
     tokens[i] = term_str;
-    //printf("Tokens[%d] = %s\n",i,start);
+    //printf("Tokens[%d] = %s\n",i,term_str);
     term_str = word_terminator(term_str)+1;
   }
   tokens[numWords] = 0;
